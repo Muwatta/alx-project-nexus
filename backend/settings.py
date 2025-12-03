@@ -16,25 +16,29 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG", "False") == "True"
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "*").split(",")
 
-# -----------------------------
-# STATIC FILES
-# -----------------------------
-if DEBUG:
-    STATIC_URL = "/static/"
-else:
-    STATIC_ROOT = BASE_DIR / "staticfiles"
-    STATIC_URL = "/static/"
 
-# -----------------------------
+# STATIC FILES
+
+STATIC_URL = "/static/"
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+
 # APPLICATIONS
-# -----------------------------
 INSTALLED_APPS = [
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    'colorfield',
+    'admin_interface',
+
     "rest_framework",
     "django_filters",
     "drf_spectacular",
@@ -42,7 +46,11 @@ INSTALLED_APPS = [
     "catalog",
     "orders",
     "checkout",
+    'tailwind',
+    'theme',
 ]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -59,7 +67,7 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -106,7 +114,8 @@ REST_FRAMEWORK = {
     ),
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
-
+TAILWIND_APP_NAME = 'theme'
+INTERNAL_IPS = ['127.0.0.1']
 # -----------------------------
 # PASSWORD VALIDATION
 # -----------------------------
