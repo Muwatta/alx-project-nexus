@@ -13,7 +13,7 @@ load_dotenv()  # Load .env variables
 # SECURITY & DEBUG
 # -----------------------------
 SECRET_KEY = os.getenv("SECRET_KEY")
-DEBUG = os.getenv("DEBUG", "True") == "True"
+DEBUG = os.getenv("DEBUG", "False") == "True"
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "*").split(",")
 
 # -----------------------------
@@ -79,8 +79,10 @@ AUTH_USER_MODEL = 'accounts.User'
 # DATABASE (Railway Postgres)
 # -----------------------------
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv("DATABASE_URL")  # Set DATABASE_URL in Railway
+     "default": dj_database_url.config(
+        default=os.getenv("DATABASE_URL"),
+        conn_max_age=600,
+        ssl_require=True,
     )
 }
 
