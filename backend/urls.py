@@ -1,14 +1,14 @@
 # backend/urls.py
-from django.contrib import admin
+from django.contrib import admin    
 from django.urls import path, include
-from rest_framework import routers
-from catalog.views import ProductViewSet, CategoryViewSet
+from django.http import JsonResponse
 
-router = routers.DefaultRouter()
-router.register(r"products", ProductViewSet)
-router.register(r"categories", CategoryViewSet)
+def root(request):
+    return JsonResponse({"message": "Welcome to ALX Nexus API"})
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("api/", include(router.urls)),
+    path("", root),
+    path('admin/', admin.site.urls),
+    path("api/accounts/", include("accounts.urls")),
+    path("api/products/", include("catalog.urls")),
 ]
