@@ -1,26 +1,37 @@
 # Python
 *.pyc
+__pycache__/
 *.pyo
 *.pyd
-__pycache__/
-*.so
+*.pdb
 
-# Virtual environment
+# Virtual Environment
 venv/
-.env
+env/
+ENV/
+.venv/
 
 # Django
+*.sqlite3
 *.log
-*.pot
-*.pyc
 db.sqlite3
-/staticfiles/
 media/
+staticfiles/
+static/
 
-# VS Code / IDEs
+# Environment Variables
+.env
+.env.*
+
+# Migrations
+*/migrations/*.py
+!*/migrations/__init__.py
+
+# IDEs and Editors
 .vscode/
 .idea/
-*.swp
+*.sublime-project
+*.sublime-workspace
 
 # OS files
 .DS_Store
