@@ -1,104 +1,127 @@
-# ALX Project Nexus – Backend Engineering Documentation
+# E-Commerce Backend API – Django REST Framework
 
-## 🧭 Overview
-This repository documents my major learnings and experiences from the **ProDev Backend Engineering Program** at ALX.  
+## Description
 
-For my **Project Nexus Capstone**, I chose to build an **E-Commerce Backend** system — a real-world application simulating product catalog management, user authentication, and API integration for frontend consumption.  
-This documentation consolidates backend concepts, technologies, challenges, solutions, and best practices applied throughout the program.
+Production-ready backend for an e-commerce platform that supports product catalogs, orders, checkout, user authentication, and asynchronous operations. Designed for scalability, maintainability, and integration with frontend applications.
 
 ---
 
-## ⚙️ Key Technologies and Tools
+## Features
 
-### Core Languages & Frameworks
-- **Python:** Core programming language for backend logic.
-- **Django & Django REST Framework (DRF):** For building scalable RESTful APIs.
-- **GraphQL (Optional):** Explored for efficient and flexible data fetching.
-
-### Databases & Caching
-- **PostgreSQL:** Relational database for storing products, categories, and user data.
-- **Redis:** For caching frequently accessed data to improve API performance.
-
-### DevOps & Deployment
-- **Docker:** Containerized environment for development and deployment.
-- **CI/CD Pipelines (GitHub Actions):** Automating testing and deployment workflows.
-- **Celery & RabbitMQ:** Background task management for asynchronous operations.
-
-### Authentication & Security
-- **JWT Authentication:** Secure user login and role-based access control.
-- **Input Validation:** Ensuring data integrity and security.
+* JWT authentication with role-based access control
+* Product and category CRUD management
+* Order lifecycle management and checkout workflow
+* Filtering, sorting, and pagination for large datasets
+* Background tasks (email notifications, order processing) using Celery and RabbitMQ
+* Redis caching for performance optimization
+* Dockerized for consistent development and production environments
+* CI/CD pipelines using GitHub Actions for automated testing and deployment
 
 ---
 
-## 🧩 Major Backend Concepts Applied
+## Tech Stack
 
-### 1. RESTful APIs
-- Built CRUD endpoints for products, categories, and user management.
-- Implemented filtering, sorting, and pagination for product discovery.
-- Followed REST conventions with proper HTTP methods and status codes.
-
-### 2. Database Design
-- Designed relational schema for users, products, and categories.
-- Applied normalization and indexing for optimized queries.
-- Managed relationships using foreign keys and transactions.
-
-### 3. Authentication & Authorization
-- JWT-based authentication for secure login.
-- Role-based permissions to control access to certain endpoints.
-- Passwords hashed securely with Django’s built-in tools.
-
-### 4. Asynchronous Programming
-- Implemented background tasks with Celery & RabbitMQ (e.g., sending email notifications, long-running tasks).
-
-### 5. CI/CD & Deployment
-- Automated test and build workflows with GitHub Actions.
-- Dockerized the backend to ensure consistent development and deployment environments.
-
-### 6. Caching & Performance Optimization
-- Redis caching implemented to reduce database load.
-- Query optimization through indexing and ORM improvements.
+* **Backend:** Python, Django, Django REST Framework
+* **Database:** PostgreSQL
+* **Caching:** Redis
+* **Async Tasks:** Celery + RabbitMQ
+* **Containerization:** Docker
+* **CI/CD:** GitHub Actions
+* **Authentication:** JWT with role-based permissions
 
 ---
 
-## 🚀 Challenges & Solutions
+## Architecture Overview
 
-| Challenge | Solution |
-|------------|-----------|
-| Large product datasets caused slow API responses | Implemented pagination, filtering, sorting, and Redis caching. |
-| User authentication and secure access | Implemented JWT authentication with role-based access control. |
-| Background tasks and notifications | Integrated Celery with RabbitMQ for asynchronous processing. |
-| Deployment inconsistencies on Windows | Developed and tested the application on WSL + Docker for a Linux-like environment. |
-| Version control conflicts in team workflow | Adopted feature-branch workflow with descriptive commit messages (`feat:`, `fix:`, `docs:`). |
+* `accounts` – Handles user authentication and management
+* `catalog` – Manages products and categories
+* `orders` – Handles order processing and tracking
+* `checkout` – Payment integration and order confirmation
+* `backend` – Project configuration and settings
 
 ---
 
-## 💡 Best Practices & Personal Takeaways
-- Write clean, modular, and DRY code.
-- Use environment variables for sensitive data.
-- Document all API endpoints using Swagger/OpenAPI for easy frontend integration.
-- Prioritize security: JWT, input validation, and permission checks.
-- Collaborate early with frontend developers to ensure smooth integration.
+## Setup and Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/Muwatta/alx-project-nexus.git
+cd alx-project-nexus
+```
+
+2. Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+3. Configure environment variables:
+
+* `POSTGRES_DB`
+* `POSTGRES_USER`
+* `POSTGRES_PASSWORD`
+* `SECRET_KEY`
+
+4. Run migrations:
+
+```bash
+python manage.py migrate
+```
+
+5. Start the server:
+
+```bash
+python manage.py runserver
+```
+
+6. For Docker:
+
+```bash
+docker-compose up --build
+```
 
 ---
 
-## 🤝 Collaboration
-- **Frontend Developers:** Integrate backend endpoints for their applications.  
-- **Backend Peers:** Exchange ideas, debug issues, and review code collaboratively.  
+## Authentication
 
-**Collaboration Channel:** Discord → `#ProDevProjectNexus`
-
----
-
-## 🏁 Final Thoughts
-This documentation is the foundation for my **E-Commerce Backend Capstone**.  
-It demonstrates my ability to design, implement, and optimize a real-world backend system using ALX ProDev best practices.  
-I aimed to build a scalable, secure, and maintainable backend ready for frontend integration.
+* JWT access and refresh tokens
+* Role-based permissions: Admin, Customer, Staff
+* Passwords hashed securely with Django’s built-in authentication system
 
 ---
 
-### 📂 Repository Information
-- **Repository Name:** `alx-project-nexus`
-- **Primary File:** `README.md`
-- **Author:** Abdullahi
-- **Project:** E-Commerce Backend (Project Nexus Capstone)
-- **Program:** ALX ProDev Backend Engineering
+## Background Tasks
+
+* Asynchronous email notifications
+* Order processing tasks
+* Handled by Celery and RabbitMQ
+
+---
+
+## API Endpoints (Summary)
+
+* `/api/accounts/` – User registration, login, and profile management
+* `/api/catalog/products/` – CRUD operations for products
+* `/api/catalog/categories/` – CRUD operations for categories
+* `/api/orders/` – Create, retrieve, and manage orders
+* `/api/checkout/` – Payment and order confirmation
+
+---
+
+## Deployment
+
+* Dockerized application ensures consistent environments
+* CI/CD pipelines using GitHub Actions automate testing, building, and deployment
+
+---
+
+## Project Status
+
+Actively maintained as part of the ALX ProDev Backend Engineering Capstone.
+
+---
+
+## GitHub Repository
+
+[https://github.com/Muwatta/alx-project-nexus](https://github.com/Muwatta/alx-project-nexus)
